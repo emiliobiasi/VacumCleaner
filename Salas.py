@@ -18,7 +18,6 @@ class Salas:
         # Coloca o Cleaner em uma sala aleatoria
         index = random.randint(0, len(self.vetor_salas) - 1)
         self.vetor_salas[index].set_cleaner_here(1)
-        self.vetor_salas[index].set_chao()
 
         # Embaralhar as salas dentro do vetor após criação
         random.shuffle(self.vetor_salas)
