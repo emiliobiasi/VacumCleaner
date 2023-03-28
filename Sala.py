@@ -15,11 +15,11 @@ class Sala:
             self.visivel = "?"
             self.cleaner_here = cleaner
 
-    def set_cleaner_here(self, index):
-        self.cleaner_here = Cleaner(index)
+    def set_cleaner_here(self, cleaner):
+        self.cleaner_here = cleaner
 
     def unset_cleaner_here(self):
-        self.cleaner_here = 0
+        self.cleaner_here = "_"
 
     def limpa(self):
         self.sujo = 0

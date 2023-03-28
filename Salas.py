@@ -1,11 +1,12 @@
 import random
 
+from Cleaner import Cleaner
 from Sala import Sala
 
 
 class Salas:
 
-    def __init__(self, qtd_salas, qnt_sujas):
+    def __init__(self, qtd_salas, qnt_sujas, cleaner):
         self.vetor_salas = []
         self.qnt_sujas = qnt_sujas
 
@@ -15,12 +16,11 @@ class Salas:
             self.vetor_salas.append(s)
             qnt_sujas = qnt_sujas - 1
 
-        # Coloca o Cleaner em uma sala aleatoria
-        index = random.randint(0, len(self.vetor_salas) - 1)
-        self.vetor_salas[index].set_cleaner_here(index)
-
         # Embaralhar as salas dentro do vetor após criação
         random.shuffle(self.vetor_salas)
+
+        # Coloca o Cleaner em uma sala aleatoria
+        self.vetor_salas[cleaner.sala].set_cleaner_here(cleaner)
 
     def __str__(self):
         return self.vetor_salas.__str__()
