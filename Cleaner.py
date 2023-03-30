@@ -8,17 +8,19 @@ class Cleaner:
 
     # Move o Cleaner para a sala da direita
     def mover_direita(self, salas):
-        salas.vetor_salas[self.sala].unset_cleaner_here()
-        if len(salas.vetor_salas) != self.sala:
-            salas.vetor_salas[self.sala + 1].set_cleaner_here()
+        if int(len(salas.vetor_salas)) != (self.sala + 1) and len(salas.vetor_salas) != 1:
+            salas.vetor_salas[self.sala].unset_cleaner_here()
+            salas.vetor_salas[self.sala + 1].set_cleaner_here(self)
+            self.sala = self.sala + 1
         else:
             print("Não é possíver ir para direta! As salas ja acabaram para este lado.")
 
     # Move o Cleaner para a sala da esquerda
     def mover_esquerda(self, salas):
-        salas.vetor_salas[self.sala].unset_cleaner_here()
-        if len(salas.vetor_salas) != 1:
-            salas.vetor_salas[self.sala + 1].set_cleaner_here()
+        if self.sala > 0:
+            salas.vetor_salas[self.sala].unset_cleaner_here()
+            salas.vetor_salas[self.sala - 1].set_cleaner_here(self)
+            self.sala = self.sala - 1
         else:
             print("Não é possíver ir para esquerda! As salas ja acabaram para este lado.")
 
