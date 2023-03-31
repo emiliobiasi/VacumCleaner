@@ -38,7 +38,6 @@ def manual_base(qtd_salas, qtd_sujas, cleaner):
                 print(salas.vetor_salas[i].__str__())
 
 
-
 # Controlador de ROBO Onisciente manual do usuário
 def manual_onisciente(qtd_salas, qtd_sujas, cleaner):
     print("\n------ CONTROLADOR MANUAL - AMBIENTE ONISCIENTE ------")
@@ -69,6 +68,5 @@ def manual_onisciente(qtd_salas, qtd_sujas, cleaner):
 
         for i in range(len(salas.vetor_salas)):
             print(salas.vetor_salas[i].__str__())
-
 
 # Proximas lógicas
