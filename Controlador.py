@@ -1,12 +1,15 @@
 from Salas import Salas
 
 
-# Controlador de ROBO manual do usuário
+# Controlador de ROBO base manual do usuário
 def manual_base(qtd_salas, qtd_sujas, cleaner):
     print("\n------ CONTROLADOR MANUAL - AMBIENTE BASE ------")
     salas = Salas(qtd_salas, qtd_sujas, cleaner)
     for i in range(len(salas.vetor_salas)):
-        print(salas.vetor_salas[i].__str2__())
+        if i != cleaner.sala:
+            print(salas.vetor_salas[i].__str2__())
+        else:
+            print(salas.vetor_salas[i].__str__())
 
     escolha = 1
     while escolha != 0:
@@ -24,14 +27,19 @@ def manual_base(qtd_salas, qtd_sujas, cleaner):
         }
 
         # Definindo a escolha
-        escolha = int(input("Opcao: "))
+        escolha = int(input("\nOpcao: "))
 
         # Executando a opção escolhida
         options[escolha](salas)
         for i in range(len(salas.vetor_salas)):
-            print(salas.vetor_salas[i].__str2__())
+            if i != cleaner.sala:
+                print(salas.vetor_salas[i].__str2__())
+            else:
+                print(salas.vetor_salas[i].__str__())
 
 
+
+# Controlador de ROBO Onisciente manual do usuário
 def manual_onisciente(qtd_salas, qtd_sujas, cleaner):
     print("\n------ CONTROLADOR MANUAL - AMBIENTE ONISCIENTE ------")
     salas = Salas(qtd_salas, qtd_sujas, cleaner)
