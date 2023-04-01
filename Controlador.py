@@ -1,10 +1,42 @@
-from Salas import Salas
+# Controlador de ROBO robo-base
+def robo_base(salas, cleaner):
+    print("\n------ CONTROLADOR BASE - AMBIENTE BASE ------")
+    for i in range(len(salas.vetor_salas)):
+        if i != cleaner.sala:
+            print(salas.vetor_salas[i].__str2__())
+        else:
+            print(salas.vetor_salas[i].__str__())
+
+    print("\n\nROBO LIMPANDO...")
+
+    # Algorítimo que faz o robo limpar todas as salas de forma autônoma BASE
+    while cleaner.sala != 0:
+        if cleaner.verifica_limpo(salas) == 1:
+            cleaner.limpar(salas)
+            cleaner.atualiza_memoria()
+        cleaner.mover_esquerda(salas)
+
+    while cleaner.sala != len(salas.vetor_salas) - 1:
+        if cleaner.verifica_limpo(salas) == 1:
+            cleaner.limpar(salas)
+            cleaner.atualiza_memoria()
+        cleaner.mover_direita(salas)
+
+    if cleaner.verifica_limpo(salas) == 1:
+        cleaner.limpar(salas)
+        cleaner.atualiza_memoria()
+    # -------------------------------------------------------------------
+
+    print("\n\nResultado: ")
+    print(f"\nO Robo limpou as {len(cleaner.memoria)} salas que estavam sujas.")
+    print(f"Salas que estavam sujas: {cleaner.memoria}\n")
+    for i in range(len(salas.vetor_salas)):
+        print(salas.vetor_salas[i].__str__())
 
 
 # Controlador de ROBO base manual do usuário
-def manual_base(qtd_salas, qtd_sujas, cleaner):
+def manual_base(salas, cleaner):
     print("\n------ CONTROLADOR MANUAL - AMBIENTE BASE ------")
-    salas = Salas(qtd_salas, qtd_sujas, cleaner)
     for i in range(len(salas.vetor_salas)):
         if i != cleaner.sala:
             print(salas.vetor_salas[i].__str2__())
@@ -38,10 +70,43 @@ def manual_base(qtd_salas, qtd_sujas, cleaner):
                 print(salas.vetor_salas[i].__str__())
 
 
+# Controlador de ROBO robo-onisciente
+def robo_onisciente(salas, cleaner):
+    print("\n------ CONTROLADOR ONISCIENTE - AMBIENTE ONISCIENTE ------")
+    for i in range(len(salas.vetor_salas)):
+        print(salas.vetor_salas[i].__str__())
+
+    print("\n\nROBO LIMPANDO...")
+
+    # Algorítimo que faz o robo limpar todas as salas de forma autônoma ONISCIENTE
+    # Mudar para logica mais eficaz
+    while cleaner.sala != 0:
+        if cleaner.verifica_limpo(salas) == 1:
+            cleaner.limpar(salas)
+            cleaner.atualiza_memoria()
+        cleaner.mover_esquerda(salas)
+
+    while cleaner.sala != len(salas.vetor_salas) - 1:
+        if cleaner.verifica_limpo(salas) == 1:
+            cleaner.limpar(salas)
+            cleaner.atualiza_memoria()
+        cleaner.mover_direita(salas)
+
+    if cleaner.verifica_limpo(salas) == 1:
+        cleaner.limpar(salas)
+        cleaner.atualiza_memoria()
+    # -------------------------------------------------------------------
+
+    print("\n\nResultado: ")
+    print(f"\nO Robo limpou as {len(cleaner.memoria)} salas que estavam sujas.")
+    print(f"Salas que estavam sujas: {cleaner.memoria}\n")
+    for i in range(len(salas.vetor_salas)):
+        print(salas.vetor_salas[i].__str__())
+
+
 # Controlador de ROBO Onisciente manual do usuário
-def manual_onisciente(qtd_salas, qtd_sujas, cleaner):
+def manual_onisciente(salas, cleaner):
     print("\n------ CONTROLADOR MANUAL - AMBIENTE ONISCIENTE ------")
-    salas = Salas(qtd_salas, qtd_sujas, cleaner)
     for i in range(len(salas.vetor_salas)):
         print(salas.vetor_salas[i].__str__())
 
@@ -68,5 +133,3 @@ def manual_onisciente(qtd_salas, qtd_sujas, cleaner):
 
         for i in range(len(salas.vetor_salas)):
             print(salas.vetor_salas[i].__str__())
-
-# Proximas lógicas
