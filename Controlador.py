@@ -1,15 +1,6 @@
 # Controlador de ROBO robo-base
-def robo_base(salas, cleaner):
-    print("\n------ CONTROLADOR BASE - AMBIENTE BASE ------")
-    for i in range(len(salas.vetor_salas)):
-        if i != cleaner.sala:
-            print(salas.vetor_salas[i].__str2__())
-        else:
-            print(salas.vetor_salas[i].__str__())
 
-    print("\n\nROBO LIMPANDO...")
-
-    # Algorítimo que faz o robo limpar todas as salas de forma autônoma BASE
+def logica_robo_base(salas, cleaner):
     while cleaner.sala != 0:
         if cleaner.verifica_limpo(salas) == 1:
             cleaner.limpar(salas)
@@ -25,6 +16,86 @@ def robo_base(salas, cleaner):
     if cleaner.verifica_limpo(salas) == 1:
         cleaner.limpar(salas)
         cleaner.atualiza_memoria()
+
+
+# Verifica a sujeira mais distante a esquerda e a direita do robo
+def verifica_sujeira_longe(salas, cleaner):
+    ret = [0, 0]
+
+    posicao_robo = cleaner.sala
+    while posicao_robo != -1:
+        if salas.vetor_salas[posicao_robo].sujo == 1:
+            ret[0] = posicao_robo
+        posicao_robo -= 1
+
+    posicao_robo = cleaner.sala
+    while posicao_robo != len(salas.vetor_salas) - 1:
+        if salas.vetor_salas[posicao_robo].sujo == 1:
+            ret[1] = posicao_robo
+        posicao_robo += 1
+
+    return ret
+
+
+def esquerda_primeiro(salas, cleaner, ret):
+    while cleaner.sala != ret[0] - 1:
+        if cleaner.verifica_limpo(salas) == 1:
+            cleaner.limpar(salas)
+            cleaner.atualiza_memoria()
+        cleaner.mover_esquerda(salas)
+
+    while cleaner.sala != ret[1] + 1:
+        if cleaner.verifica_limpo(salas) == 1:
+            cleaner.limpar(salas)
+            cleaner.atualiza_memoria()
+        cleaner.mover_direita(salas)
+
+    if cleaner.verifica_limpo(salas) == 1:
+        cleaner.limpar(salas)
+        cleaner.atualiza_memoria()
+
+
+def direita_primeiro(salas, cleaner, ret):
+    while cleaner.sala != ret[1] + 1:
+        if cleaner.verifica_limpo(salas) == 1:
+            cleaner.limpar(salas)
+            cleaner.atualiza_memoria()
+        cleaner.mover_direita(salas)
+
+    while cleaner.sala != ret[0] - 1:
+        if cleaner.verifica_limpo(salas) == 1:
+            cleaner.limpar(salas)
+            cleaner.atualiza_memoria()
+        cleaner.mover_esquerda(salas)
+
+    if cleaner.verifica_limpo(salas) == 1:
+        cleaner.limpar(salas)
+        cleaner.atualiza_memoria()
+
+
+def logica_robo_onisciente(salas, cleaner, ret):
+    distancia_esquerda = cleaner.sala - ret[0]
+    distancia_direita = ret[1] - cleaner.sala
+
+    if distancia_esquerda <= distancia_direita:
+        esquerda_primeiro(salas, cleaner, ret)
+    else:
+        direita_primeiro(salas, cleaner, ret)
+
+
+def robo_base(salas, cleaner):
+    print("\n------ CONTROLADOR BASE - AMBIENTE BASE ------")
+    for i in range(len(salas.vetor_salas)):
+        if i != cleaner.sala:
+            print(salas.vetor_salas[i].__str2__())
+        else:
+            print(salas.vetor_salas[i].__str__())
+
+    print("\n\nROBO LIMPANDO...")
+
+    # Algorítimo que faz o robo limpar todas as salas de forma autônoma BASE
+    logica_robo_base(salas, cleaner)
+
     # -------------------------------------------------------------------
 
     print("\n\nResultado: ")
@@ -78,23 +149,10 @@ def robo_onisciente(salas, cleaner):
 
     print("\n\nROBO LIMPANDO...")
 
-    # Algorítimo que faz o robo limpar todas as salas de forma autônoma ONISCIENTE
-    # Mudar para logica mais eficaz
-    while cleaner.sala != 0:
-        if cleaner.verifica_limpo(salas) == 1:
-            cleaner.limpar(salas)
-            cleaner.atualiza_memoria()
-        cleaner.mover_esquerda(salas)
+    # Algorítimo que faz o robo limpar todas as salas de forma autônoma ONISCIENTE com base nas sujeiras mais
+    # distantes do robo
+    logica_robo_onisciente(salas, cleaner, verifica_sujeira_longe(salas, cleaner))
 
-    while cleaner.sala != len(salas.vetor_salas) - 1:
-        if cleaner.verifica_limpo(salas) == 1:
-            cleaner.limpar(salas)
-            cleaner.atualiza_memoria()
-        cleaner.mover_direita(salas)
-
-    if cleaner.verifica_limpo(salas) == 1:
-        cleaner.limpar(salas)
-        cleaner.atualiza_memoria()
     # -------------------------------------------------------------------
 
     print("\n\nResultado: ")

@@ -34,4 +34,4 @@ class Cleaner:
         self.memoria.append(self.sala + 1)
 
     def __str__(self):
-        return "🤖 " + str(self.sala.__str__())
+        return "🤖"
