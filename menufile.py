@@ -24,3 +24,13 @@ def menu_controlador(ambiente):
             print("2 - Controlador Manual")
             controlador = input("\nQual controlador voce deseja? ")
         return ambiente, controlador
+
+
+def menu_aleatorio():
+    print('\n------ ESCOLHA DE ALEATORIEDADE ------')
+    controlador = 0
+    while controlador not in ['1', '2']:
+        print('1 - Sem aleatoriedade')
+        print('2 - Com aleatoriedade')
+        controlador = input('\nQual opção você deseja? ')
+    return controlador

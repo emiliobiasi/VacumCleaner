@@ -26,7 +26,7 @@ class Salas:
         return self.vetor_salas.__str__()
 
     def verifica_sujeira(self):
-        for i in range(self.vetor_salas):
+        for i in range(len(self.vetor_salas)):
             if self.vetor_salas[i].sujo == 1:
                 return True
         return False
