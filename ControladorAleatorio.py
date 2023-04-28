@@ -14,6 +14,7 @@ def robo_onisciente_aleatorio(salas, cleaner):
     while salas.verifica_sujeira():
         implanta_sujeira_aleatoriamente(salas)
         logica_robo_onisciente_aleatorio(salas, cleaner, verifica_sujeira_longe_aleatorio(salas, cleaner))
+        printando_tabela_salas_onisciente(salas)
     printando_tabela_salas_onisciente(salas)
 
 
