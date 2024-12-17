@@ -35,17 +35,20 @@ def logica_robo_base(salas, cleaner):
         if cleaner.verifica_limpo(salas) == 1:
             cleaner.limpar(salas)
             cleaner.atualiza_memoria()
+            printando_tabela_salas_base(salas, cleaner)
         cleaner.mover_esquerda(salas)
 
     while cleaner.sala != len(salas.vetor_salas) - 1:
         if cleaner.verifica_limpo(salas) == 1:
             cleaner.limpar(salas)
             cleaner.atualiza_memoria()
+            printando_tabela_salas_base(salas, cleaner)
         cleaner.mover_direita(salas)
 
     if cleaner.verifica_limpo(salas) == 1:
         cleaner.limpar(salas)
         cleaner.atualiza_memoria()
+        printando_tabela_salas_base(salas, cleaner)
 
 
 # Verifica a sujeira mais distante a esquerda e a direita do robo
@@ -71,17 +74,20 @@ def esquerda_primeiro(salas, cleaner, ret):
         if cleaner.verifica_limpo(salas) == 1:
             cleaner.limpar(salas)
             cleaner.atualiza_memoria()
+            printando_tabela_salas_onisciente(salas)
         cleaner.mover_esquerda(salas)
 
     while cleaner.sala != ret[1]:
         if cleaner.verifica_limpo(salas) == 1:
             cleaner.limpar(salas)
             cleaner.atualiza_memoria()
+            printando_tabela_salas_onisciente(salas)
         cleaner.mover_direita(salas)
 
     if cleaner.verifica_limpo(salas) == 1:
         cleaner.limpar(salas)
         cleaner.atualiza_memoria()
+        printando_tabela_salas_onisciente(salas)
 
 
 def direita_primeiro(salas, cleaner, ret):
@@ -89,17 +95,20 @@ def direita_primeiro(salas, cleaner, ret):
         if cleaner.verifica_limpo(salas) == 1:
             cleaner.limpar(salas)
             cleaner.atualiza_memoria()
+            printando_tabela_salas_onisciente(salas)
         cleaner.mover_direita(salas)
 
     while cleaner.sala != ret[0]:
         if cleaner.verifica_limpo(salas) == 1:
             cleaner.limpar(salas)
             cleaner.atualiza_memoria()
+            printando_tabela_salas_onisciente(salas)
         cleaner.mover_esquerda(salas)
 
     if cleaner.verifica_limpo(salas) == 1:
         cleaner.limpar(salas)
         cleaner.atualiza_memoria()
+        printando_tabela_salas_onisciente(salas)
 
 
 def logica_robo_onisciente(salas, cleaner, ret):
@@ -151,10 +160,10 @@ def manual_base(salas, cleaner):
 
         # Definindo a escolha
         escolha = int(input("\nOpcao: "))
-
-        # Executando a opção escolhida
-        options[escolha](salas)
-        printando_tabela_salas_base(salas, cleaner)
+        if escolha !=0:
+            # Executando a opção escolhida
+            options[escolha](salas)
+            printando_tabela_salas_base(salas, cleaner)
 
 
 # Controlador de ROBO robo-onisciente
@@ -198,8 +207,8 @@ def manual_onisciente(salas, cleaner):
 
         # Definindo a escolha
         escolha = int(input("Opcao: "))
-
-        # Executando a opção escolhida
-        options[escolha](salas)
+        if escolha != 0:
+            # Executando a opção escolhida
+            options[escolha](salas)
 
         printando_tabela_salas_onisciente(salas)
